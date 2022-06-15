@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import Swal from 'sweetalert2'
+/* import swal from'sweetalert2'; */
 
 @Injectable({
   providedIn: 'root'
@@ -44,12 +46,15 @@ export class CarritoService {
 
     localStorage.setItem('productos',JSON.stringify(prev));
     this.aumentarCarrito();
-    alert("Agregado al carrito correctamente")
+    this.mensaje("Agregado correctamente")
   }
 
   vaciarCarrito(){
     this.cart$.next(0);
     localStorage.removeItem("storageCart");
     localStorage.removeItem("productos");
+  }
+  mensaje(texto: string){
+    Swal.fire(texto, 'Correcto!', 'success');
   }
 }
